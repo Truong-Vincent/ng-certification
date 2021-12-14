@@ -25,18 +25,13 @@
         <div><a [routerLink]="['/forecast',item.zipcode]"> Go to forecast </a></div>
         <div>Current conditions: <span>{{item.weather[0].main}}</span></div>
         <div>Temperature <span>{{item.weather[0].main}}</span></div>
-        <div class="d-flex flex-row">
-          <div>
-            Max today: <span>{{item.main.temp_max}}</span>
-          </div>
-          -
-          <div>
-            Min today: <span>{{item.main.temp_min}}</span>
-          </div>
+        <div>
+          Max today: <span>{{item.main.temp_max}} </span>
+          - Min today: <span>{{item.main.temp_min}}</span>
         </div>
       </div>
       <div>
-        <img [src]="getWeatherIcon(item.weather[0].main)">
+        <app-weather-icon [condition]="item.weather[0].main"></app-weather-icon>
       </div>
     </div>
   </fieldset>

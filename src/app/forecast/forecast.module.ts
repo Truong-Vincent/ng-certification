@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ForecastRoutingModule } from './forecast-routing.module';
 import { ForecastComponent } from './forecast.component';
+import { WeatherIconModule } from '../weather-icon/weather-icon.module';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { ForecastComponent } from './forecast.component';
   ],
   imports: [
     CommonModule,
-    ForecastRoutingModule
+    ForecastRoutingModule,
+
+    WeatherIconModule
   ]
 })
 export class ForecastModule { }

@@ -18,7 +18,7 @@
           <div> - Max: <span>{{item.main.temp_max}}</span></div>
         </div>
         <div>
-          <img class="icon" [src]="getWeatherIcon(item.weather[0].main)">
+          <app-weather-icon [condition]="item.weather[0].main" [isIcon]="true"></app-weather-icon>
         </div>
       </div>
     </li>
