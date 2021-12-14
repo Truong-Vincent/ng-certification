@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
@@ -11,6 +12,7 @@ import { WeatherIconService } from '../core/services/weather-icon.service';
 import { WeatherService } from '../core/services/weather.service';
 
 type WeatherLocationWithZipcode = WeatherLocation & { zipcode: string };
+const WEATHER_LOCAL_STORAGE_KEY = 'current_weather';
 
 @Component({
   selector: 'app-current-weather',
@@ -18,7 +20,7 @@ type WeatherLocationWithZipcode = WeatherLocation & { zipcode: string };
   styleUrls: ['./current-weather.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CurrentWeatherComponent implements OnDestroy {
+export class CurrentWeatherComponent implements OnDestroy, OnInit {
   inputZipcode: string = '';
 
   readonly weathers: Array<WeatherLocationWithZipcode> = [];
@@ -31,6 +33,10 @@ export class CurrentWeatherComponent implements OnDestroy {
     private weatherIconService: WeatherIconService,
     private toastrService: ToastrService
   ) {}
+
+  ngOnInit(): void {
+    this.retoreFromLocalStorage();
+  }
 
   ngOnDestroy(): void {
     this.ngDestroy.next();
@@ -49,6 +55,7 @@ export class CurrentWeatherComponent implements OnDestroy {
         this.weathers.push({ ...weather, zipcode });
         this.inputZipcode = '';
         this.changeDetectorRef.markForCheck();
+        this.saveToLocalStorage();
       });
   }
 
@@ -67,6 +74,24 @@ export class CurrentWeatherComponent implements OnDestroy {
     if (index > -1) {
       this.weathers.splice(index, 1);
       this.changeDetectorRef.markForCheck();
+      this.saveToLocalStorage();
+    }
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(
+      WEATHER_LOCAL_STORAGE_KEY,
+      JSON.stringify(this.weathers)
+    );
+  }
+
+  retoreFromLocalStorage() {
+    const serializedItem = localStorage.getItem(WEATHER_LOCAL_STORAGE_KEY);
+    if (serializedItem) {
+      const weathers = JSON.parse(serializedItem);
+      if (Array.isArray(weathers)) {
+        this.weathers.push(...weathers);
+      }
     }
   }
 }
