@@ -1,38 +1,42 @@
-<fieldset>
+<fieldset class="form-group border p-3">
   <legend>Add a location</legend>
   <div class="well">
     <h2>Enter a zipcode:</h2>
-    <form class="form-inline">
-      <input class="form-control ml-5 mr-3" placeholder="Zipcode" type="text" id="addLocation" [(ngModel)]="inputZipcode">
-      <button class="btn btn-primary" id="addLocationBtn" (click)="addLocation(inputZipcode)"> Add location </button>
+    <form class="form-inline" (ngSubmit)="inputZipcode && addLocation(inputZipcode)">
+      <input class="form-control ml-5 mr-3" placeholder="94040,us" type="text" name="zipcode" id="zipcode"
+             [(ngModel)]="inputZipcode" required autofocus>
+      <button type="submit" class="btn btn-primary" id="addLocationBtn"> Add location </button>
     </form>
   </div>
 </fieldset>
 
-<h4>Template for main page:</h4>
-<div class="container-fluid">
+<div>
+  <fieldset *ngFor="let item of weathers" class="border pl-3">    
+    <legend class="mb-0">{{item.name}}</legend>
 
-  <div>
-    <div class="well flex">
-      <div>
-        <h3>Rancho Cordova (95742)</h3>
-        <h4>Current conditions: Clouds</h4>
-        <h4>Temperatures today:</h4>
-        <p>
-          Current 58
-          - Max 65
-          - Min 48
-        </p>
-        <p>
-          <a href="/forecast/95742">Show 5-day forecast for Rancho Cordova</a>
-        </p>
+    <div class="d-flex flex-row-reverse mr-2">
+      <button type="button" class="close" aria-label="Close" (click)="removeLocation(item)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="container-fluid d-flex flex-row justify-content-between p-3">
+      <div class="d-flex flex-column justify-content-around">
+        <div>Current conditions <span>{{item.weather[0].main}}</span></div>
+        <div>Temperature <span>{{item.weather[0].main}}</span></div>
+        <div class="d-flex flex-row">
+          <div>
+            Max today: <span>{{item.main.temp_max}}</span>
+          </div>
+          -
+          <div>
+            Min today: <span>{{item.main.temp_min}}</span>
+          </div>
+        </div>
       </div>
       <div>
-        <span class="close">×</span>
-        <img src="https://www.angulartraining.com/images/weather/sun.png">
+        <img [src]="getWeatherIcon(item.weather[0].main)">
       </div>
     </div>
-  </div>
+  </fieldset>
 </div>
-<hr>
-<h4>Template for 5-day forecast page:</h4>
