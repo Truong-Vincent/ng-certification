@@ -24,6 +24,7 @@
     ],
 
     "paths": {
+      "@models/*": ["src/models/*"],
       "@environments/*": ["src/environments/*"],
     }
   },

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: 'forecast', loadChildren: () => import('./forecast/forecast.module').then(m => m.ForecastModule) },
   {
     path: '',
     loadChildren: () =>
@@ -10,7 +11,6 @@ const routes: Routes = [
       ),
     pathMatch: 'full',
   },
-
   { path: '**', redirectTo: '' },
 ];
 

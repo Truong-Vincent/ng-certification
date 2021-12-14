@@ -10,6 +10,8 @@ import { WeatherLocation } from '../core/models';
 import { WeatherIconService } from '../core/services/weather-icon.service';
 import { WeatherService } from '../core/services/weather.service';
 
+type WeatherLocationWithZipcode = WeatherLocation & { zipcode: string };
+
 @Component({
   selector: 'app-current-weather',
   templateUrl: './current-weather.component.html',
@@ -19,7 +21,7 @@ import { WeatherService } from '../core/services/weather.service';
 export class CurrentWeatherComponent implements OnDestroy {
   inputZipcode: string = '';
 
-  readonly weathers: WeatherLocation[] = [];
+  readonly weathers: Array<WeatherLocationWithZipcode> = [];
 
   private readonly ngDestroy = new Subject<void>();
 
@@ -44,7 +46,7 @@ export class CurrentWeatherComponent implements OnDestroy {
         })
       )
       .subscribe((weather) => {
-        this.weathers.push(weather);
+        this.weathers.push({ ...weather, zipcode });
         this.inputZipcode = '';
         this.changeDetectorRef.markForCheck();
       });
@@ -60,7 +62,7 @@ export class CurrentWeatherComponent implements OnDestroy {
     return this.weatherIconService.getIcon(condition);
   }
 
-  removeLocation(item: WeatherLocation) {
+  removeLocation(item: WeatherLocationWithZipcode) {
     const index = this.weathers.indexOf(item);
     if (index > -1) {
       this.weathers.splice(index, 1);

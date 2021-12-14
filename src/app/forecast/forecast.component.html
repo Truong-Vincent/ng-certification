@@ -1,0 +1,25 @@
+<div class="mt-2 mb-2">
+  <a routerLink="/" class="btn btn-success" tabindex="0" id="mainPageBtn">&lt; Back to main page</a>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">5-day forecast for Rancho Cordova</h3>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of items">
+      <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row">
+          <div>
+            {{item.dt_txt | date:'EEEE, MMM dd'}} : {{item.weather[0].main}}
+          </div>
+          <div> - Min: <span>{{item.main.temp_min}}</span></div>
+          <div> - Max: <span>{{item.main.temp_max}}</span></div>
+        </div>
+        <div>
+          <img class="icon" [src]="getWeatherIcon(item.weather[0].main)">
+        </div>
+      </div>
+    </li>
+  </ul>
