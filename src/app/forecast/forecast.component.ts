@@ -13,6 +13,7 @@ export class ForecastComponent implements OnInit {
     FORECAST: 'forecast',
   };
 
+  city: string = '';
   items!: ForecastItems;
 
   constructor(
@@ -21,12 +22,12 @@ export class ForecastComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.data);
     const forecast = this.route.snapshot.data[
       ForecastComponent.ROUTE_DATA_KEYS.FORECAST
     ] as Forecast;
 
-    this.items = forecast.list.filter((item, index) => index % 8 === 0);
+    this.city = forecast.city.name;
+    this.items = forecast.list.filter((_, index) => index % 8 === 0);
   }
 
   getWeatherIcon(condition: string) {
