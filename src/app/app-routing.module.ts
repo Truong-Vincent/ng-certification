@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'forecast', loadChildren: () => import('./forecast/forecast.module').then(m => m.ForecastModule) },
+  {
+    path: 'forecast',
+    loadChildren: () =>
+      import('@features/forecast/forecast.module').then((m) => m.routes),
+  },
   {
     path: '',
     loadChildren: () =>
-      import('./current-weather/current-weather.module').then(
-        (m) => m.CurrentWeatherModule
+      import('@features/main-page/current-weather.module').then(
+        (m) => m.routes
       ),
     pathMatch: 'full',
   },
@@ -15,7 +19,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      initialNavigation: 'enabledBlocking',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

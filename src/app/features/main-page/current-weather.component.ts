@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -5,16 +6,22 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { WeatherIconComponent } from '@shared-ui/weather-icon/weather-icon.component';
+import { WeatherLocation } from '@shared/models';
+import { WeatherIconService } from '@shared/services/weather-icon.service';
+import { WeatherService } from '@shared/services/weather.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
-import { WeatherLocation } from '../core/models';
-import { WeatherIconService } from '../core/services/weather-icon.service';
-import { WeatherService } from '../core/services/weather.service';
 
 type WeatherLocationWithZipcode = WeatherLocation & { zipcode: string };
 const WEATHER_LOCAL_STORAGE_KEY = 'current_weather';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterModule, FormsModule, WeatherIconComponent],
+
   selector: 'app-current-weather',
   templateUrl: './current-weather.component.html',
   styleUrls: ['./current-weather.component.scss'],
