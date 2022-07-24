@@ -1,0 +1,23 @@
+<button #longRunningButton class="btn" [ngClass]="(btnNgClass$ | ngrxPush) || ''" [disabled]="disabled$ | ngrxPush">
+  <ng-container *ngrxLet="state$ as state">
+    <ng-container *ngIf="getTemplateDirective(state) as templateDirective; else defaultTemplates">
+      <ng-container [ngTemplateOutlet]="templateDirective.template">
+      </ng-container>
+    </ng-container>
+
+
+    <ng-template #defaultTemplates>
+      <ng-container [ngSwitch]="state">
+        <ng-container *ngSwitchCase="LongRunningButtonState.Ready">
+          Ready
+        </ng-container>
+        <ng-container *ngSwitchCase="LongRunningButtonState.Working">
+          Working...
+        </ng-container>
+        <ng-container *ngSwitchCase="LongRunningButtonState.Done">
+          Done
+        </ng-container>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</button>

@@ -15,16 +15,26 @@ import { WeatherLocation } from '../models';
 import { LocationService } from './location.service';
 import { OpenWeatherMapApi } from './open-weather-map-api';
 
-interface CurrentCondition {
+type CurrentWeather =
+  | {
+      data: WeatherLocation;
+      lastUpdate: Date;
+      error?: never;
+    }
+  | {
+      data?: never;
+      lastUpdate: Date;
+      error: string;
+    };
+
+type CurrentCondition = CurrentWeather & {
   zip: string;
-  data: WeatherLocation;
-  lastUpdate: Date;
-}
+};
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService implements OnDestroy {
   private weathers: {
-    [zipcode: string]: { data: WeatherLocation; lastUpdate: Date };
+    [zipcode: string]: CurrentWeather;
   } = {};
   private readonly weathers$ = new BehaviorSubject<WeatherService['weathers']>(
     {}
@@ -61,7 +71,10 @@ export class WeatherService implements OnDestroy {
       map(([locations, weathers]) => {
         const currentConditions: CurrentCondition[] = [];
         for (const zip of locations) {
-          currentConditions.push({ ...weathers[zip], zip });
+          currentConditions.push({
+            ...weathers[zip],
+            zip,
+          });
         }
         return currentConditions.reverse();
       }),
@@ -85,9 +98,18 @@ export class WeatherService implements OnDestroy {
   }
 
   addCurrentCondition(zipcode: string): void {
-    this.getWeatherByZipcode(zipcode).subscribe((data) => {
-      this.weathers[zipcode] = { data, lastUpdate: new Date() };
-      this.weathers$.next(this.weathers);
+    this.getWeatherByZipcode(zipcode).subscribe({
+      next: (data) => {
+        this.weathers[zipcode] = { data, lastUpdate: new Date() };
+        this.weathers$.next(this.weathers);
+      },
+      error: (error) => {
+        this.weathers[zipcode] = {
+          error: error.error?.message,
+          lastUpdate: new Date(),
+        };
+        this.weathers$.next(this.weathers);
+      },
     });
   }
 

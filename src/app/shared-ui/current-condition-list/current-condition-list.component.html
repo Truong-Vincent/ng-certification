@@ -28,7 +28,7 @@
   <ng-template #noDateTmp>
     <div>
       <h3>Zipcode : {{location.zip}}</h3>
-      <p class="lead">No data found</p>
+      <p class="lead">{{location.error || 'No data found'}}</p>
     </div>
   </ng-template>
 

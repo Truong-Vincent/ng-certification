@@ -1428,6 +1428,13 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@ngrx/component@^14.0.2":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@ngrx/component/-/component-14.0.2.tgz#70c8165e8b07d3c0aa67a4d942fa1f897b7802c0"
+  integrity sha512-EZrIa/Y4SCeTMTjGpTMx9M/7FFS0CmvxsqKXoPsl2QNQaS6uWm5DehTzHCkV9izSqAS93RRfnABbEJbX43m7kg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngtools/webpack@14.1.0":
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.1.0.tgz#2e79fffe93f35939ed3dc65ab5aa830afdb13d39"
@@ -6532,7 +6539,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.4.0, tslib@^2.1.0, tslib@^2.3.0:
+tslib@2.4.0, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
