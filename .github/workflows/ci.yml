@@ -31,7 +31,7 @@ jobs:
       run: yarn install --frozen-lockfile
     - name: Build 🛠
       run: yarn build
-    - name: Lint ✏️
+    - name: Lint 👕
       run: yarn lint
-    - name: Test 📋
+    - name: Test 🚨
       run: yarn test:ci
