@@ -1,0 +1,25 @@
+<div class="select-container" [class.opened]="isOpen$ | async">
+  <div class="value-container">
+    <div class="value-selected" [hidden]="search.value">
+      <span class="value-selected-label">{{selectedLabel}}</span>
+    </div>
+    <div class="input-container" role="combobox" aria-haspopup="listbox">
+      <input #search [ngModel]="searchTerm" aria-autocomplete="list" autocapitalize="false" type="text"
+             (input)="handleSearchChange(search.value)" required>
+    </div>
+  </div>
+  <span class="arrow-wrapper"><span class="arrow"></span></span>
+</div>
+
+<div class="dropdown-panel" *ngIf="isOpen$ | async">
+  <ul class="dropdown">
+    <ng-container *ngIf="displayedItems.length;else noResultTmp">
+      <li role="option" class="dropdown-option" *ngFor="let option of displayedItems" (click)="select(option)">
+        {{getLabel(option)}}
+      </li>
+    </ng-container>
+    <ng-template #noResultTmp>
+      <li ole="option" class="dropdown-option">No results found ...</li>
+    </ng-template>
+  </ul>
+</div>

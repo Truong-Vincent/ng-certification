@@ -1,29 +1,2 @@
 <app-add-location></app-add-location>
 <app-current-condition-list></app-current-condition-list>
-<!-- 
-<div>
-  <fieldset *ngFor="let item of weathers" class="border pl-3">
-    <legend class="mb-0">{{item.name}}</legend>
-
-    <div class="d-flex flex-row-reverse mr-2">
-      <button type="button" class="close" aria-label="Close" (click)="removeLocation(item)">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-    <div class="container-fluid d-flex flex-row justify-content-between p-3">
-      <div class="d-flex flex-column justify-content-around">
-        <div><a [routerLink]="['/forecast',item.zipcode]"> Go to forecast </a></div>
-        <div>Current conditions: <span>{{item.weather[0].main}}</span></div>
-        <div>Temperature <span>{{item.weather[0].main}}</span></div>
-        <div>
-          Max today: <span>{{item.main.temp_max}} </span>
-          - Min today: <span>{{item.main.temp_min}}</span>
-        </div>
-      </div>
-      <div>
-        <app-weather-icon [condition]="item.weather[0].main"></app-weather-icon>
-      </div>
-    </div>
-  </fieldset>
-</div> -->

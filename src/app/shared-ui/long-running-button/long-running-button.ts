@@ -56,7 +56,7 @@ export class LongRunningButtonComponent<T> implements OnDestroy, AfterViewInit {
   longRunningButton?: ElementRef;
 
   @Input() type: string = 'button';
-  @Input() clickAction$?: Observable<T>;
+  @Input() clickAction?: () => void | Observable<T>;
   @Input() canExecute: boolean = true;
 
   readonly LongRunningButtonState = LongRunningButtonState;
@@ -84,9 +84,11 @@ export class LongRunningButtonComponent<T> implements OnDestroy, AfterViewInit {
           ([_, state]) =>
             this.canExecute === true && state === LongRunningButtonState.Ready
         ),
-        tap(() => this.state$.next(LongRunningButtonState.Working)),
+        tap(() => {
+          this.state$.next(LongRunningButtonState.Working);
+        }),
         switchMap(() =>
-          (this.clickAction$ ?? EMPTY).pipe(
+          ((this.clickAction && this.clickAction()) ?? EMPTY).pipe(
             last(),
             catchError(() => EMPTY),
             defaultIfEmpty(undefined)
