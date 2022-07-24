@@ -4,6 +4,7 @@ import {
   BehaviorSubject,
   combineLatest,
   map,
+  Observable,
   shareReplay,
   Subject,
   take,
@@ -14,33 +15,30 @@ import { WeatherLocation } from '../models';
 import { LocationService } from './location.service';
 import { OpenWeatherMapApi } from './open-weather-map-api';
 
-@Injectable()
+interface CurrentCondition {
+  zip: string;
+  data: WeatherLocation;
+  lastUpdate: Date;
+}
+
+@Injectable({ providedIn: 'root' })
 export class WeatherService implements OnDestroy {
-  private weathers: { [zipcode: string]: WeatherLocation } = {};
-  private weathers$ = new BehaviorSubject<{
-    [zipcode: string]: WeatherLocation;
-  }>({});
-  readonly currentConditions$ = combineLatest([
-    this.locationService.locations$,
-    this.weathers$,
-  ]).pipe(
-    throttleTime(300, undefined, { leading: true, trailing: true }),
-    map(([locations, weathers]) => {
-      const currentConditions = [];
-      for (const zip of locations) {
-        currentConditions.push({ zip, data: weathers[zip] });
-      }
-      return currentConditions.reverse();
-    }),
-    shareReplay()
+  private weathers: {
+    [zipcode: string]: { data: WeatherLocation; lastUpdate: Date };
+  } = {};
+  private readonly weathers$ = new BehaviorSubject<WeatherService['weathers']>(
+    {}
   );
 
+  readonly currentConditions$: Observable<CurrentCondition[]>;
+
   private readonly ngDestroy$ = new Subject<void>();
+
   constructor(
     private readonly locationService: LocationService,
     private readonly http: HttpClient
   ) {
-    this.refreshWeathers();
+    this.refreshAll();
 
     this.locationService.locationChange$
       .pipe(takeUntil(this.ngDestroy$))
@@ -54,6 +52,21 @@ export class WeatherService implements OnDestroy {
             break;
         }
       });
+
+    this.currentConditions$ = combineLatest([
+      this.locationService.locations$,
+      this.weathers$,
+    ]).pipe(
+      throttleTime(300, undefined, { leading: true, trailing: true }),
+      map(([locations, weathers]) => {
+        const currentConditions: CurrentCondition[] = [];
+        for (const zip of locations) {
+          currentConditions.push({ ...weathers[zip], zip });
+        }
+        return currentConditions.reverse();
+      }),
+      shareReplay()
+    );
   }
 
   ngOnDestroy(): void {
@@ -61,11 +74,10 @@ export class WeatherService implements OnDestroy {
     this.ngDestroy$.complete();
   }
 
-  private refreshWeathers() {
+  refreshAll() {
     this.locationService.locations$
       .pipe(takeUntil(this.ngDestroy$), take(1))
       .subscribe((locations) => {
-        this.weathers = {};
         for (const zipcode of new Set(locations)) {
           this.addCurrentCondition(zipcode);
         }
@@ -74,7 +86,7 @@ export class WeatherService implements OnDestroy {
 
   addCurrentCondition(zipcode: string): void {
     this.getWeatherByZipcode(zipcode).subscribe((data) => {
-      this.weathers[zipcode] = data;
+      this.weathers[zipcode] = { data, lastUpdate: new Date() };
       this.weathers$.next(this.weathers);
     });
   }
