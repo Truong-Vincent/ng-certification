@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@features/main-page/current-weather.module').then(
+      import('@features/main-page/main-page.module').then(
         (m) => m.routes
       ),
     pathMatch: 'full',

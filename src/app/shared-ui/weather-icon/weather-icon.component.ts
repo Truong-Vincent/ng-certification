@@ -8,17 +8,23 @@ import { WeatherIconService } from '@shared/services/weather-icon.service';
 
   selector: 'app-weather-icon',
   template: `
-    <img [ngClass]="{ icon: isIcon }" [src]="getWeatherIcon(condition)" />
+    <img
+      [ngClass]="{ icon: isIcon }"
+      [src]="weatherIcon"
+      alt="{{ conditionId }}"
+    />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherIconComponent {
-  @Input() condition: string = '';
+  @Input() conditionId?: number;
   @Input() isIcon: boolean = false;
 
-  constructor(private weatherIconService: WeatherIconService) {}
-
-  getWeatherIcon(condition: string) {
-    return this.weatherIconService.getIcon(condition);
+  get weatherIcon() {
+    return this.conditionId
+      ? this.weatherIconService.getWeatherIcon(this.conditionId)
+      : undefined;
   }
+
+  constructor(private weatherIconService: WeatherIconService) {}
 }

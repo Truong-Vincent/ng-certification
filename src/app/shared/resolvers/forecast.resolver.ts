@@ -4,9 +4,9 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
+import { ForecastService } from '@shared/services/forecast.service';
 import { Observable } from 'rxjs';
 import { Forecast } from '../models';
-import { WeatherService } from '../services/weather.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class ForecastResolver implements Resolve<Forecast> {
     ZIPCODE: 'zipcode',
   };
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private readonly service: ForecastService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -25,6 +25,6 @@ export class ForecastResolver implements Resolve<Forecast> {
     const zipcode = route.paramMap.get(
       ForecastResolver.ROUTE_PARAM_KEYS.ZIPCODE
     )!;
-    return this.weatherService.getForecast(zipcode);
+    return this.service.getForecast(zipcode);
   }
 }

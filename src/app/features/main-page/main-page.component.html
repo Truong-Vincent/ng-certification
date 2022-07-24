@@ -1,15 +1,6 @@
-<fieldset class="form-group border p-3">
-  <legend>Add a location</legend>
-  <div class="well">
-    <h2>Enter a zipcode:</h2>
-    <form class="form-inline" (ngSubmit)="inputZipcode && addLocation(inputZipcode)">
-      <input class="form-control ml-5 mr-3" placeholder="94040,us" type="text" name="zipcode" id="zipcode"
-             [(ngModel)]="inputZipcode" required autofocus>
-      <button type="submit" class="btn btn-primary" id="addLocationBtn"> Add location </button>
-    </form>
-  </div>
-</fieldset>
-
+<app-add-location></app-add-location>
+<app-current-condition-list></app-current-condition-list>
+<!-- 
 <div>
   <fieldset *ngFor="let item of weathers" class="border pl-3">
     <legend class="mb-0">{{item.name}}</legend>
@@ -35,4 +26,4 @@
       </div>
     </div>
   </fieldset>
-</div>
+</div> -->

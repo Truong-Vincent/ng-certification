@@ -4,8 +4,8 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./current-weather.component').then(
-        (m) => m.CurrentWeatherComponent
+      import('./main-page.component').then(
+        (m) => m.MainPageComponent
       ),
   },
 ];

@@ -1,0 +1,36 @@
+<div *ngFor="let location of currentConditions$ | async; trackBy:trackByFn"
+     class="card bg-light my-3 p-3 pb-1 d-flex flex-column">
+
+
+  <div *ngIf="location.data as data;else noDateTmp" class="d-flex justify-content-between align-items-end flex-fill">
+    <div>
+      <h3>{{data.name}} ({{location.zip}})</h3>
+      <h4>Current conditions: {{data.weather[0].main}}</h4>
+      <h4>Temperatures today:</h4>
+      <p>
+        Current {{data.main.temp | number:'.0-0'}}
+        - Max {{data.main.temp_max | number:'.0-0'}}
+        - Min {{data.main.temp_min | number:'.0-0'}}
+      </p>
+      <p>
+        <a [routerLink]="['/forecast', location.zip]">Show 5-day forecast for {{data.name}}</a>
+      </p>
+    </div>
+    <div>
+      <app-weather-icon [conditionId]="data.weather[0].id"></app-weather-icon>
+    </div>
+  </div>
+
+  <div class="text-end">
+    <button class="ml-auto btn-close" (click)="removeLocation(location.zip)"></button>
+  </div>
+
+
+  <ng-template #noDateTmp>
+    <div>
+      <h3>Zipcode : {{location.zip}}</h3>
+      <p class="lead">No data found</p>
+    </div>
+  </ng-template>
+
+</div>

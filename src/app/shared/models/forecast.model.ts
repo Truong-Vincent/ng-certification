@@ -1,23 +1,12 @@
-import { Clouds, Coord, Main, Weather, Wind } from "./weather.model";
+import { Coord, Weather } from './weather.model';
 
-
-export interface Rain {
-  "3h": number;
+export interface Forecast {
+  city: City;
+  cod: string;
+  message: number;
+  cnt: number;
+  list: ForecastItem[];
 }
-
-export interface ForecastItem {
-  dt: number;
-  main: Main;
-  weather: Weather[];
-  clouds: Clouds;
-  wind: Wind;
-  visibility: number;
-  pop: number;
-  rain: Rain;
-  dt_txt: string;
-}
-export type ForecastItems = ForecastItem[];
-
 
 export interface City {
   id: number;
@@ -26,14 +15,38 @@ export interface City {
   country: string;
   population: number;
   timezone: number;
-  sunrise: number;
-  sunset: number;
 }
 
-export interface Forecast {
-  cod: string;
-  message: number;
-  cnt: number;
-  list: ForecastItem[];
-  city: City;
+export interface ForecastItem {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: Temp;
+  feels_like: FeelsLike;
+  pressure: number;
+  humidity: number;
+  weather: Weather[];
+  speed: number;
+  deg: number;
+  gust: number;
+  clouds: number;
+  pop: number;
+  rain?: number;
+}
+export type ForecastItems = ForecastItem[];
+
+export interface Temp {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+export interface FeelsLike {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
 }
