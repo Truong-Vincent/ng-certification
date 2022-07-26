@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1658798410566,
+  "timestamp": 1658800949241,
   "index": "/ng-weather/index.html",
   "assetGroups": [
     {
@@ -20,7 +20,7 @@
         "/ng-weather/main.af289d8839e8f0b1.js",
         "/ng-weather/manifest.webmanifest",
         "/ng-weather/polyfills.994146f178f9a4eb.js",
-        "/ng-weather/runtime.0dcd4ad4c8deebcf.js",
+        "/ng-weather/runtime.0c00e61f851aae3b.js",
         "/ng-weather/styles.cc24101fb843f8ea.css"
       ],
       "patterns": []
@@ -65,7 +65,7 @@
     "/ng-weather/794.425a19187da73ec1.js": "d1effd72d3adc4bb097efaa4dc71fbe475f14994",
     "/ng-weather/871.91e989472c2d7dcb.js": "1e58bfc082570f41dd86fead77e77960ed0ad403",
     "/ng-weather/873.c24b4699c82c5327.js": "9ca6cd1a9b78565274648c6ae3b075a36fed4f1e",
-    "/ng-weather/assets/countries.json": "32574dac0d1c8d460317e7c997e7255081ff96ad",
+    "/ng-weather/assets/countries.json": "39be4724f55e84c7123b881b0506b598ff21ef05",
     "/ng-weather/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/ng-weather/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "/ng-weather/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -76,11 +76,11 @@
     "/ng-weather/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/ng-weather/common.0dc951d24232bcc2.js": "8eea5505b91e991b9a0c75b7f255b066129aa4f0",
     "/ng-weather/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/ng-weather/index.html": "37f45da17380d41a07661fc281cb3afc01e2bc9d",
+    "/ng-weather/index.html": "6111a2b366ec268c040808c90e6d12167eeb5006",
     "/ng-weather/main.af289d8839e8f0b1.js": "207e08f010e1ccf039d8d8b5dbcd4cb11bdae94c",
     "/ng-weather/manifest.webmanifest": "a8388b24107734aa8926935c10ebb9473df43020",
     "/ng-weather/polyfills.994146f178f9a4eb.js": "dae1ee2a50178584ee6783cd778c12182a972fa3",
-    "/ng-weather/runtime.0dcd4ad4c8deebcf.js": "06d4d6a386b9898f3b2d8a65d718871414bc4bf3",
+    "/ng-weather/runtime.0c00e61f851aae3b.js": "3827e1308550b4745bb3edfd4af5f6a2953ef1ea",
     "/ng-weather/styles.cc24101fb843f8ea.css": "f1b80fb313b0ba8f556c3b07602841c894fe107f"
   },
   "navigationUrls": [
