@@ -168,6 +168,15 @@ export class SelectAutoCompleteComponent<T extends Item>
   clickout(event: Event) {
     this.isOpen$.next(this.eRef.nativeElement.contains(event.target));
   }
+  @HostListener('focusout', ['$event'])
+  blur(event: FocusEvent) {
+    if (
+      event.relatedTarget &&
+      !this.eRef.nativeElement.contains(event.relatedTarget)
+    ) {
+      this.isOpen$.next(false);
+    }
+  }
 
   protected getLabel(item: T) {
     return typeof item === 'object' ? (item as any)[this.bindLabel] : item;
