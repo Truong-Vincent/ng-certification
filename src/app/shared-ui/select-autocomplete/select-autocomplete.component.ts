@@ -82,7 +82,7 @@ export class SelectAutoCompleteComponent<T extends Item>
         filter((isOpen) => !isOpen)
       )
       .subscribe(() => {
-        this.searchTerm = undefined;
+        this.handleSearchChange(undefined);
       });
   }
 
@@ -100,7 +100,7 @@ export class SelectAutoCompleteComponent<T extends Item>
    * Filter the options depending on the input of the user
    * @param value
    */
-  protected handleSearchChange(value: string): void {
+  protected handleSearchChange(value: string | undefined): void {
     this.searchTerm = value;
     this.search();
   }
