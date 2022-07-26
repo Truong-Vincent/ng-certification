@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1658802996123,
+  "timestamp": 1658803413703,
   "index": "/ng-weather/index.html",
   "assetGroups": [
     {
@@ -13,14 +13,14 @@
       "urls": [
         "/ng-weather/794.425a19187da73ec1.js",
         "/ng-weather/871.91e989472c2d7dcb.js",
-        "/ng-weather/873.c24b4699c82c5327.js",
+        "/ng-weather/873.7b0a996ad8bd6eda.js",
         "/ng-weather/common.bf89e66ef551523d.js",
         "/ng-weather/favicon.ico",
         "/ng-weather/index.html",
         "/ng-weather/main.af289d8839e8f0b1.js",
         "/ng-weather/manifest.webmanifest",
         "/ng-weather/polyfills.994146f178f9a4eb.js",
-        "/ng-weather/runtime.f09fdaaa40020645.js",
+        "/ng-weather/runtime.8e979ede7963c449.js",
         "/ng-weather/styles.cc24101fb843f8ea.css"
       ],
       "patterns": []
@@ -64,7 +64,7 @@
   "hashTable": {
     "/ng-weather/794.425a19187da73ec1.js": "d1effd72d3adc4bb097efaa4dc71fbe475f14994",
     "/ng-weather/871.91e989472c2d7dcb.js": "1e58bfc082570f41dd86fead77e77960ed0ad403",
-    "/ng-weather/873.c24b4699c82c5327.js": "9ca6cd1a9b78565274648c6ae3b075a36fed4f1e",
+    "/ng-weather/873.7b0a996ad8bd6eda.js": "17e87fc3ffbf9f3e16adde11dfec7af4d32f2621",
     "/ng-weather/assets/countries.json": "39be4724f55e84c7123b881b0506b598ff21ef05",
     "/ng-weather/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/ng-weather/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
@@ -76,11 +76,11 @@
     "/ng-weather/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/ng-weather/common.bf89e66ef551523d.js": "1f21b84f35b9d8875665fbb88bc4990543e6acd3",
     "/ng-weather/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/ng-weather/index.html": "e3c5b9c9faf8e58eb91b888a76761d3abd8cdc9d",
+    "/ng-weather/index.html": "42055d2a86da40cdcb2ba9f932b83a39c78b9a45",
     "/ng-weather/main.af289d8839e8f0b1.js": "207e08f010e1ccf039d8d8b5dbcd4cb11bdae94c",
     "/ng-weather/manifest.webmanifest": "a8388b24107734aa8926935c10ebb9473df43020",
     "/ng-weather/polyfills.994146f178f9a4eb.js": "dae1ee2a50178584ee6783cd778c12182a972fa3",
-    "/ng-weather/runtime.f09fdaaa40020645.js": "151a7c36e85d983a9d9e142c64a29cb1afa84ed5",
+    "/ng-weather/runtime.8e979ede7963c449.js": "4ce3305bc26d060dbfe030f02a6b26eb064fee53",
     "/ng-weather/styles.cc24101fb843f8ea.css": "f1b80fb313b0ba8f556c3b07602841c894fe107f"
   },
   "navigationUrls": [
