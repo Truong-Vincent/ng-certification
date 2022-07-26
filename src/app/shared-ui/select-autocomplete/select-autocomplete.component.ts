@@ -14,6 +14,7 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { HighlightDirective } from '@shared-ui/highlight/highlight.directive';
 import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
 
 type Item = string | number | object;
@@ -21,7 +22,7 @@ type SearchFn<T> = (term: string, item: T) => boolean;
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HighlightDirective],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

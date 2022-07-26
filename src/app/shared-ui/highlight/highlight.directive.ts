@@ -1,57 +1,55 @@
-// import {
-//   Directive,
-//   ElementRef,
-//   HostBinding,
-//   Input,
-//   OnChanges,
-//   SimpleChanges,
-// } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 
-// @Directive({
-//   selector: '[appHighlight]',
-// })
-// export class HighlightDirective implements OnChanges {
-//   @Input('appHighlight') searchTerm?: string;
+@Directive({
+  standalone: true,
 
-//   currentValue: string;
+  selector: '[appHighlight]',
+})
+export class HighlightDirective implements OnChanges, AfterViewInit {
+  @Input('appHighlight') searchTerm?: string;
 
-//   @HostBinding('innerHtml') content?: string;
+  label?: string;
 
-//   private readonly element: HTMLElement;
+  private readonly element: HTMLElement;
 
-//   constructor(private elementRef: ElementRef) {
-//     this.element = this.elementRef.nativeElement;
-//     this.element.inn
-//   }
+  constructor(
+    private readonly elementRef: ElementRef,
+    private readonly renderer: Renderer2
+  ) {
+    this.element = this.elementRef.nativeElement;
+  }
 
-//   ngOnChanges(changes: SimpleChanges) {
-//     if (!this.elementRef?.nativeElement) {
-//       return;
-//     }
-//     if ('searchTerm' in changes) {
-//       if (!this.searchTerm || this.searchTerm === '') {
-//         this.content = this.currentValue;
-//       } else {
-//         const regex = new RegExp(this.searchTerm, 'gi');
-//         const newText = this.currentValue.replace(regex, (match: string) => {
-//           return `<b>${match}</b>`;
-//         });
-//         this.content = newText;
-//       }
-//     }
-//   }
+  ngAfterViewInit(): void {
+    this.label = this.element.innerHTML;
+  }
 
-//   private highlightContent() {
-//     const label = this.content;
-//     if (!this.searchTerm) {
-//       this._setInnerHtml(label);
-//       return;
-//     }
+  ngOnChanges(changes: SimpleChanges) {
+    const label = this.label ?? '';
+    if (label == null || label === '') {
+      return;
+    }
+    if ('searchTerm' in changes) {
+      const searchTerm = changes['searchTerm'].currentValue;
+      if (searchTerm == null || searchTerm === '') {
+        this.setInnerHtml(label);
+        return;
+      }
+      const regex = new RegExp(searchTerm, 'gi');
+      this.setInnerHtml(
+        label.replace(regex, (match: string) => `<b>${match}</b>`)
+      );
+    }
+  }
 
-//     const alternationString = this._escapeRegExp(this.term).replace(' ', '|');
-//     const termRegex = new RegExp(alternationString, 'gi');
-//     this._setInnerHtml(
-//       label.replace(termRegex, `<span class=\"highlighted\">$&</span>`)
-//     );
-//   }
-// }
+  private setInnerHtml(html: string) {
+    this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', html);
+  }
+}

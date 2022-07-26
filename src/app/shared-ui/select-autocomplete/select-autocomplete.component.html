@@ -4,7 +4,7 @@
       <span class="value-selected-label">{{selectedLabel}}</span>
     </div>
     <div class="input-container" role="combobox" aria-haspopup="listbox">
-      <input #search [ngModel]="searchTerm" aria-autocomplete="list" autocapitalize="false" type="text"
+      <input #search [(ngModel)]="searchTerm" aria-autocomplete="list" autocapitalize="false" type="text"
              (input)="handleSearchChange(search.value)" required>
     </div>
   </div>
@@ -14,7 +14,8 @@
 <div class="dropdown-panel" *ngIf="isOpen$ | async">
   <ul class="dropdown">
     <ng-container *ngIf="displayedItems.length;else noResultTmp">
-      <li role="option" class="dropdown-option" *ngFor="let option of displayedItems" (click)="select(option)">
+      <li role="option" class="dropdown-option" *ngFor="let option of displayedItems" (click)="select(option)"
+          [appHighlight]="searchTerm">
         {{getLabel(option)}}
       </li>
     </ng-container>
