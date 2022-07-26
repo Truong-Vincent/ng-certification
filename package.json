@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --configuration production",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "ng deploy --no-silent"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
+    "angular-cli-ghpages": "1.0.0",
     "eslint": "^8.18.0",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",

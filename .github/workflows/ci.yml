@@ -5,13 +5,12 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,18 +19,38 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Checkout ✅
-      uses: actions/checkout@v3
-    - name: Setup 🏗 | Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - name: Install ⚙️
-      run: yarn install --frozen-lockfile
-    - name: Build 🛠
-      run: yarn build
-    - name: Lint 👕
-      run: yarn lint
-    - name: Test 🚨
-      run: yarn test:ci
+      - name: Checkout ✅
+        uses: actions/checkout@v3
+      - name: Setup 🏗 | Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - name: Install ⚙️
+        run: yarn install --frozen-lockfile
+      - name: Build 🛠
+        run: yarn build
+      - name: Lint 👕
+        run: yarn lint
+      - name: Test 🚨
+        run: yarn test:ci
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout ✅
+        uses: actions/checkout@v3
+      - name: Setup 🏗 | Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: "yarn"
+      - name: Install ⚙️
+        run: yarn install --frozen-lockfile
+      - name: Deploy 🚀
+        env:
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn deploy --name="$user_name" --email="$user_email"
