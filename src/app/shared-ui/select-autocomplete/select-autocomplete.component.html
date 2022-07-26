@@ -4,7 +4,7 @@
       <span class="value-selected-label">{{selectedLabel}}</span>
     </div>
     <div class="input-container" role="combobox" aria-haspopup="listbox">
-      <input #search [(ngModel)]="searchTerm" aria-autocomplete="list" autocapitalize="false" type="text"
+      <input #search [(ngModel)]="searchTerm" aria-autocomplete="list" autocapitalize="false" type="number"
              (input)="handleSearchChange(search.value)" required>
     </div>
   </div>
