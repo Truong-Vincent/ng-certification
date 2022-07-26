@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkng_weather=self.webpackChunkng_weather||[]).push([[871],{3871:(h,t,n)=>{n.r(t),n.d(t,{routes:()=>o});const o=[{path:"",loadComponent:()=>Promise.all([n.e(592),n.e(873)]).then(n.bind(n,1873)).then(s=>s.MainPageComponent)}]}}]);
