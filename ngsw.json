@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1658802450547,
+  "timestamp": 1658802996123,
   "index": "/ng-weather/index.html",
   "assetGroups": [
     {
@@ -14,13 +14,13 @@
         "/ng-weather/794.425a19187da73ec1.js",
         "/ng-weather/871.91e989472c2d7dcb.js",
         "/ng-weather/873.c24b4699c82c5327.js",
-        "/ng-weather/common.0dc951d24232bcc2.js",
+        "/ng-weather/common.bf89e66ef551523d.js",
         "/ng-weather/favicon.ico",
         "/ng-weather/index.html",
         "/ng-weather/main.af289d8839e8f0b1.js",
         "/ng-weather/manifest.webmanifest",
         "/ng-weather/polyfills.994146f178f9a4eb.js",
-        "/ng-weather/runtime.0c00e61f851aae3b.js",
+        "/ng-weather/runtime.f09fdaaa40020645.js",
         "/ng-weather/styles.cc24101fb843f8ea.css"
       ],
       "patterns": []
@@ -74,13 +74,13 @@
     "/ng-weather/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/ng-weather/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/ng-weather/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/ng-weather/common.0dc951d24232bcc2.js": "8eea5505b91e991b9a0c75b7f255b066129aa4f0",
+    "/ng-weather/common.bf89e66ef551523d.js": "1f21b84f35b9d8875665fbb88bc4990543e6acd3",
     "/ng-weather/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/ng-weather/index.html": "6111a2b366ec268c040808c90e6d12167eeb5006",
+    "/ng-weather/index.html": "e3c5b9c9faf8e58eb91b888a76761d3abd8cdc9d",
     "/ng-weather/main.af289d8839e8f0b1.js": "207e08f010e1ccf039d8d8b5dbcd4cb11bdae94c",
     "/ng-weather/manifest.webmanifest": "a8388b24107734aa8926935c10ebb9473df43020",
     "/ng-weather/polyfills.994146f178f9a4eb.js": "dae1ee2a50178584ee6783cd778c12182a972fa3",
-    "/ng-weather/runtime.0c00e61f851aae3b.js": "3827e1308550b4745bb3edfd4af5f6a2953ef1ea",
+    "/ng-weather/runtime.f09fdaaa40020645.js": "151a7c36e85d983a9d9e142c64a29cb1afa84ed5",
     "/ng-weather/styles.cc24101fb843f8ea.css": "f1b80fb313b0ba8f556c3b07602841c894fe107f"
   },
   "navigationUrls": [
